@@ -16,13 +16,13 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `agences`
+-- Table structure for table `agence`
 --
 
-DROP TABLE IF EXISTS `agences`;
+DROP TABLE IF EXISTS `agence`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `agences` (
+CREATE TABLE `agence` (
   `id_agence` int NOT NULL AUTO_INCREMENT,
   `nom` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id_agence`)
@@ -30,12 +30,12 @@ CREATE TABLE `agences` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `agences`
+-- Dumping data for table `agence`
 --
 
-LOCK TABLES `agences` WRITE;
-/*!40000 ALTER TABLE `agences` DISABLE KEYS */;
-/*!40000 ALTER TABLE `agences` ENABLE KEYS */;
+LOCK TABLES `agence` WRITE;
+/*!40000 ALTER TABLE `agence` DISABLE KEYS */;
+/*!40000 ALTER TABLE `agence` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -272,4 +272,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-02-24 11:04:01
+-- Dump completed on 2022-02-24 11:21:27

@@ -16,35 +16,6 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `Villa`
---
-
-DROP TABLE IF EXISTS `Villa`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `Villa` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `nom_villa` int NOT NULL,
-  `nombre_piece` int NOT NULL,
-  `surface` int NOT NULL,
-  `montant` int NOT NULL,
-  `id_propriete` int DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `id_propriete` (`id_propriete`),
-  CONSTRAINT `Villa_ibfk_1` FOREIGN KEY (`id_propriete`) REFERENCES `proprietes` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `Villa`
---
-
-LOCK TABLES `Villa` WRITE;
-/*!40000 ALTER TABLE `Villa` DISABLE KEYS */;
-/*!40000 ALTER TABLE `Villa` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `agences`
 --
 
@@ -52,9 +23,9 @@ DROP TABLE IF EXISTS `agences`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `agences` (
-  `id` int NOT NULL AUTO_INCREMENT,
+  `id_agence` int NOT NULL AUTO_INCREMENT,
   `nom` varchar(100) DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id_agence`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -68,199 +39,228 @@ LOCK TABLES `agences` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `appartements`
+-- Table structure for table `appartement`
 --
 
-DROP TABLE IF EXISTS `appartements`;
+DROP TABLE IF EXISTS `appartement`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `appartements` (
-  `id` int NOT NULL AUTO_INCREMENT,
+CREATE TABLE `appartement` (
+  `id_appartement` int NOT NULL AUTO_INCREMENT,
   `num_appartement` varchar(100) DEFAULT NULL,
   `nombre_piece` int NOT NULL,
   `surface` varchar(100) DEFAULT NULL,
   `montant` int NOT NULL,
   `id_immeuble` int DEFAULT NULL,
-  PRIMARY KEY (`id`),
+  PRIMARY KEY (`id_appartement`),
   UNIQUE KEY `num_appartement` (`num_appartement`),
   KEY `id_immeuble` (`id_immeuble`),
-  CONSTRAINT `appartements_ibfk_1` FOREIGN KEY (`id_immeuble`) REFERENCES `immeubles` (`id`)
+  CONSTRAINT `appartement_ibfk_1` FOREIGN KEY (`id_immeuble`) REFERENCES `immeuble` (`id_immeuble`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `appartements`
+-- Dumping data for table `appartement`
 --
 
-LOCK TABLES `appartements` WRITE;
-/*!40000 ALTER TABLE `appartements` DISABLE KEYS */;
-/*!40000 ALTER TABLE `appartements` ENABLE KEYS */;
+LOCK TABLES `appartement` WRITE;
+/*!40000 ALTER TABLE `appartement` DISABLE KEYS */;
+/*!40000 ALTER TABLE `appartement` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `immeubles`
+-- Table structure for table `immeuble`
 --
 
-DROP TABLE IF EXISTS `immeubles`;
+DROP TABLE IF EXISTS `immeuble`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `immeubles` (
-  `id` int NOT NULL AUTO_INCREMENT,
+CREATE TABLE `immeuble` (
+  `id_immeuble` int NOT NULL AUTO_INCREMENT,
   `num_immeuble` varchar(100) DEFAULT NULL,
   `nombre_piece` int NOT NULL,
   `surface` varchar(100) DEFAULT NULL,
   `montant` int NOT NULL,
   `id_propriete` int DEFAULT NULL,
-  PRIMARY KEY (`id`),
+  PRIMARY KEY (`id_immeuble`),
   UNIQUE KEY `num_immeuble` (`num_immeuble`),
   KEY `id_propriete` (`id_propriete`),
-  CONSTRAINT `immeubles_ibfk_1` FOREIGN KEY (`id_propriete`) REFERENCES `proprietes` (`id`)
+  CONSTRAINT `immeuble_ibfk_1` FOREIGN KEY (`id_propriete`) REFERENCES `propriete` (`id_propriete`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `immeubles`
+-- Dumping data for table `immeuble`
 --
 
-LOCK TABLES `immeubles` WRITE;
-/*!40000 ALTER TABLE `immeubles` DISABLE KEYS */;
-/*!40000 ALTER TABLE `immeubles` ENABLE KEYS */;
+LOCK TABLES `immeuble` WRITE;
+/*!40000 ALTER TABLE `immeuble` DISABLE KEYS */;
+/*!40000 ALTER TABLE `immeuble` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `magasins`
+-- Table structure for table `magasin`
 --
 
-DROP TABLE IF EXISTS `magasins`;
+DROP TABLE IF EXISTS `magasin`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `magasins` (
-  `id` int NOT NULL AUTO_INCREMENT,
+CREATE TABLE `magasin` (
+  `id_magasin` int NOT NULL AUTO_INCREMENT,
   `surface` int NOT NULL,
   `montant` int NOT NULL,
   `id_propriete` int DEFAULT NULL,
-  PRIMARY KEY (`id`),
+  PRIMARY KEY (`id_magasin`),
   KEY `id_propriete` (`id_propriete`),
-  CONSTRAINT `magasins_ibfk_1` FOREIGN KEY (`id_propriete`) REFERENCES `proprietes` (`id`)
+  CONSTRAINT `magasin_ibfk_1` FOREIGN KEY (`id_propriete`) REFERENCES `propriete` (`id_propriete`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `magasins`
+-- Dumping data for table `magasin`
 --
 
-LOCK TABLES `magasins` WRITE;
-/*!40000 ALTER TABLE `magasins` DISABLE KEYS */;
-/*!40000 ALTER TABLE `magasins` ENABLE KEYS */;
+LOCK TABLES `magasin` WRITE;
+/*!40000 ALTER TABLE `magasin` DISABLE KEYS */;
+/*!40000 ALTER TABLE `magasin` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `proprietaires`
+-- Table structure for table `proprietaire`
 --
 
-DROP TABLE IF EXISTS `proprietaires`;
+DROP TABLE IF EXISTS `proprietaire`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `proprietaires` (
-  `id` int NOT NULL AUTO_INCREMENT,
+CREATE TABLE `proprietaire` (
+  `id_proprietaire` int NOT NULL AUTO_INCREMENT,
   `nom` varchar(100) DEFAULT NULL,
   `prenom` varchar(100) DEFAULT NULL,
   `date_naissance` varchar(100) DEFAULT NULL,
   `lieu_naissance` varchar(100) DEFAULT NULL,
   `sexe` enum('M','F') DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id_proprietaire`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `proprietaires`
+-- Dumping data for table `proprietaire`
 --
 
-LOCK TABLES `proprietaires` WRITE;
-/*!40000 ALTER TABLE `proprietaires` DISABLE KEYS */;
-/*!40000 ALTER TABLE `proprietaires` ENABLE KEYS */;
+LOCK TABLES `proprietaire` WRITE;
+/*!40000 ALTER TABLE `proprietaire` DISABLE KEYS */;
+/*!40000 ALTER TABLE `proprietaire` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `propriete_proprietaires`
+-- Table structure for table `propriete`
 --
 
-DROP TABLE IF EXISTS `propriete_proprietaires`;
+DROP TABLE IF EXISTS `propriete`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `propriete_proprietaires` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `id_propriete` int DEFAULT NULL,
-  `id_proprietaire` int DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `id_propriete` (`id_propriete`),
-  KEY `id_proprietaire` (`id_proprietaire`),
-  CONSTRAINT `propriete_proprietaires_ibfk_1` FOREIGN KEY (`id_propriete`) REFERENCES `proprietes` (`id`),
-  CONSTRAINT `propriete_proprietaires_ibfk_2` FOREIGN KEY (`id_proprietaire`) REFERENCES `proprietaires` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `propriete_proprietaires`
---
-
-LOCK TABLES `propriete_proprietaires` WRITE;
-/*!40000 ALTER TABLE `propriete_proprietaires` DISABLE KEYS */;
-/*!40000 ALTER TABLE `propriete_proprietaires` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `proprietes`
---
-
-DROP TABLE IF EXISTS `proprietes`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `proprietes` (
-  `id` int NOT NULL AUTO_INCREMENT,
+CREATE TABLE `propriete` (
+  `id_propriete` int NOT NULL AUTO_INCREMENT,
   `nom` varchar(100) DEFAULT NULL,
   `taux_prestation` int NOT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id_propriete`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `proprietes`
+-- Dumping data for table `propriete`
 --
 
-LOCK TABLES `proprietes` WRITE;
-/*!40000 ALTER TABLE `proprietes` DISABLE KEYS */;
-/*!40000 ALTER TABLE `proprietes` ENABLE KEYS */;
+LOCK TABLES `propriete` WRITE;
+/*!40000 ALTER TABLE `propriete` DISABLE KEYS */;
+/*!40000 ALTER TABLE `propriete` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `studios`
+-- Table structure for table `propriete_proprietaire`
 --
 
-DROP TABLE IF EXISTS `studios`;
+DROP TABLE IF EXISTS `propriete_proprietaire`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `studios` (
-  `id` int NOT NULL AUTO_INCREMENT,
+CREATE TABLE `propriete_proprietaire` (
+  `id_propriete_proprietaire` int NOT NULL AUTO_INCREMENT,
+  `id_propriete` int DEFAULT NULL,
+  `id_proprietaire` int DEFAULT NULL,
+  PRIMARY KEY (`id_propriete_proprietaire`),
+  KEY `id_propriete` (`id_propriete`),
+  KEY `id_proprietaire` (`id_proprietaire`),
+  CONSTRAINT `propriete_proprietaire_ibfk_1` FOREIGN KEY (`id_propriete`) REFERENCES `propriete` (`id_propriete`),
+  CONSTRAINT `propriete_proprietaire_ibfk_2` FOREIGN KEY (`id_proprietaire`) REFERENCES `proprietaire` (`id_proprietaire`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `propriete_proprietaire`
+--
+
+LOCK TABLES `propriete_proprietaire` WRITE;
+/*!40000 ALTER TABLE `propriete_proprietaire` DISABLE KEYS */;
+/*!40000 ALTER TABLE `propriete_proprietaire` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `studio`
+--
+
+DROP TABLE IF EXISTS `studio`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `studio` (
+  `id_studio` int NOT NULL AUTO_INCREMENT,
   `num_studio` varchar(100) DEFAULT NULL,
   `nombre_piece` int NOT NULL,
   `surface` varchar(100) DEFAULT NULL,
   `montant` int NOT NULL,
   `id_immeuble` int DEFAULT NULL,
-  PRIMARY KEY (`id`),
+  PRIMARY KEY (`id_studio`),
   UNIQUE KEY `num_studio` (`num_studio`),
   KEY `id_immeuble` (`id_immeuble`),
-  CONSTRAINT `studios_ibfk_1` FOREIGN KEY (`id_immeuble`) REFERENCES `immeubles` (`id`)
+  CONSTRAINT `studio_ibfk_1` FOREIGN KEY (`id_immeuble`) REFERENCES `immeuble` (`id_immeuble`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `studios`
+-- Dumping data for table `studio`
 --
 
-LOCK TABLES `studios` WRITE;
-/*!40000 ALTER TABLE `studios` DISABLE KEYS */;
-/*!40000 ALTER TABLE `studios` ENABLE KEYS */;
+LOCK TABLES `studio` WRITE;
+/*!40000 ALTER TABLE `studio` DISABLE KEYS */;
+/*!40000 ALTER TABLE `studio` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `villa`
+--
+
+DROP TABLE IF EXISTS `villa`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `villa` (
+  `id_villa` int NOT NULL AUTO_INCREMENT,
+  `nom_villa` int NOT NULL,
+  `nombre_piece` int NOT NULL,
+  `surface` int NOT NULL,
+  `montant` int NOT NULL,
+  `id_propriete` int DEFAULT NULL,
+  PRIMARY KEY (`id_villa`),
+  KEY `id_propriete` (`id_propriete`),
+  CONSTRAINT `villa_ibfk_1` FOREIGN KEY (`id_propriete`) REFERENCES `propriete` (`id_propriete`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `villa`
+--
+
+LOCK TABLES `villa` WRITE;
+/*!40000 ALTER TABLE `villa` DISABLE KEYS */;
+/*!40000 ALTER TABLE `villa` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -272,4 +272,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-02-24 10:20:10
+-- Dump completed on 2022-02-24 11:04:01
